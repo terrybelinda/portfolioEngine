@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta charset="UTF-8">
+	<title>Chat Bot UI</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+	<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+
+
+  <link rel= "stylesheet" type= "text/css" href= "{{url_for('static',filename='css/style.css')}}">
+
+
+</head>
+    <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        .topnav {
+          overflow: hidden;
+          background-color: #333;
+        }
+    
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 26px;
+        }
+    
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+    
+        .topnav a.active {
+          background-color: #aec6cf;
+          color: white;
+        }
+      </style>
+
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/strategy">Portfolio</a>
+        <a class="active" href="/chatbot">Ask Me</a>
+      </div>
+      <div class="col-lg-3 col-lg-offset-4">
+        <br />
+      <body>
+	<div class="chat">
+		<div class="chat-title">
+			<h1>Chat Bot</h1>
+		</div> 
+    <div class="message-box">
+      <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
+      <button type="submit" class="message-submit">Send</button>
+    </div>
+		<div class="messages">
+			<div class="messages-content">
+			</div>
+		</div>
+	</div>
+	<div class="bg"></div>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+
+	<script src="{{url_for('static',filename='js/chatbot.js')}}"></script>
+
+</body>
+
+</html>

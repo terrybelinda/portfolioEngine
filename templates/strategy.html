@@ -1,0 +1,160 @@
+{% extends "portfolio.html" %}
+
+
+{% block summary%}
+<table  class="summary" >
+  <tr>
+    <th>Strategy</th>
+    <th>Amount</th>
+    <th>Total Amount invested</th>
+    <th>Current Valuation</th>
+    <th>Profit/Loss</th>
+  </tr>
+  {% if strategy1 is mapping %}
+    <tr>
+      <td>{{strategy1["strategy"]}}</td>
+      <td>{{strategy1["actual_strategy_amt"]}}</td>
+      <td rowspan="2">{{total_amt_invested}}</td>
+      <td rowspan="2">{{net_value}}</td>
+      
+      
+      {% if net_profit_or_loss>0  %}
+      <td rowspan="2" style="color: green">{{net_profit_or_loss}}</td>
+      {% else %}
+      <td rowspan="2" style="color: red">{{net_profit_or_loss}}</td>
+      {% endif %}
+
+
+
+     
+      <td rowspan="2">
+        <form action="/reset" method="GET">
+          <button type="submit">Try another amount</button>
+      </form>
+      </td>
+    </tr>
+  {% endif %}
+  {% if strategy2 is mapping %}
+    <tr>
+      <td>{{strategy2["strategy"]}}</td>
+      <td>{{strategy2["actual_strategy_amt"]}}</td> 
+    </tr>
+  {% endif %}
+
+</table>
+{% endblock summary%}
+
+
+
+<!-- heading1 -->
+{% block heading1 %}{% if strategy1 is mapping %}
+<h2 class="heading">
+  {{strategy1["strategy"]}} Investing {{strategy1["share"]}}%
+</h2>
+{% else %}
+<p style="color: red">No Data</p>
+{% endif %} {% endblock heading1 %}
+
+
+<!--Graph-->
+{% block strategyGraph1 %}
+<img src="{{ image2 }}" alt="my plot" />
+{% endblock strategyGraph1 %}
+
+<!-- strategy1 -->
+{% block strategy1 %} {% if strategy1 is mapping %}
+<div class="col-sm-2" ></div>
+<table class="strategy">
+  <tr>
+    <th>Symbol</th>
+    <th>Company</th>
+    <th>Buy Price$</th>
+    <th>Current Price$</th>
+    <th>Quantity</th>
+    <th>Amount Invested$</th>
+    <th>Current Value</th>
+    <th>Profit/Loss</th>
+  </tr>
+{%for key, value in strategy1["data"].items() %}
+    <tr>
+      <td>{{value["symbol"]}}</td>
+      <td>{{value["company"]}}</td>
+      <td>{{value["buy_price"]}}</td>
+      <td>{{value["current_price"]}}</td>
+      <td>{{value["qty"]}}</td>
+      <td>{{value["amt_invested"]}}</td>
+      <td>{{value["current_value"]}}</td>
+      {% if value["profit_or_loss"]>0 %}
+      <td style="color: green">{{value["profit_or_loss"]}}</td>
+      {% else %}
+      <td style="color: red">{{value["profit_or_loss"]}}</td>
+      {% endif %}
+    </tr>
+{% endfor %} 
+</table>
+</div>
+{% else %}
+<p style="color: red">No Data</p>
+{% endif %} {% endblock strategy1 %}
+
+
+<!-- heading2 -->
+{% block heading2 %}{% if strategy2 is mapping %}
+<h2 class="heading">
+  {{strategy2["strategy"]}} Investing {{strategy2["share"]}}%
+</h2>
+{% endif %} {% endblock heading2 %}
+
+<!--Graph-->
+{% block strategyGraph2 %}{% if strategy2 is mapping %}
+<img src="{{ image3 }}" alt="my plot" />
+{% endif %}{% endblock strategyGraph2 %}
+
+<!-- strategy2 -->
+{% block strategy2 %} {% if strategy2 is mapping %}
+<div class="col-sm-2" ></div>
+<table class="strategy">
+  <tr>
+    <th>Symbol</th>
+    <th>Company</th>
+    <th>Buy Price$</th>
+    <th>Current Price$</th>
+    <th>Quantity</th>
+    <th>Amount Invested$</th>
+    <th>Current Value</th>
+    <th>Profit/Loss</th>
+  </tr>
+
+{%for key, value in strategy2["data"].items() %}
+
+ 
+    <tr>
+      <td>{{value["symbol"]}}</td>
+      <td>{{value["company"]}}</td>
+      <td>{{value["buy_price"]}}</td>
+      <td>{{value["current_price"]}}</td>
+      <td>{{value["qty"]}}</td>
+      <td>{{value["amt_invested"]}}</td>
+      <td>{{value["current_value"]}}</td>
+      {% if value["profit_or_loss"]>0 %}
+      <td style="color: green">{{value["profit_or_loss"]}}</td>
+      {% else %}
+      <td style="color: red">{{value["profit_or_loss"]}}</td>
+      {% endif %}
+    </tr>
+    
+ 
+{% endfor %} 
+</table>
+</div>
+
+{% endif %} {% endblock strategy2 %}
+<!-- kjkjk -->
+{% block graph1 %}
+<img src="{{image1}}" />
+{% endblock graph1 %}
+
+<!-- kjkjk -->
+{% block graph2 %}
+<img src="{{image4}}" alt="my plot" />
+{% endblock graph2 %}
